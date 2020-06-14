@@ -29,10 +29,10 @@ brew 'composer'
 brew 'imagemagick'
 brew 'libmemcached'
 brew 'memcached'
-brew 'mysql'
+brew 'mysql', start_service: true
 brew 'nvm' # Node manager
 brew 'php-cs-fixer'
-brew 'redis'
+brew 'redis', start_service: true
 
 # Apps
 cask 'aerial'
