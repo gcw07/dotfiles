@@ -27,8 +27,6 @@ brew 'php'
 brew 'php@7.3'
 brew 'composer'
 brew 'imagemagick'
-brew 'libmemcached'
-brew 'memcached'
 brew 'mysql', start_service: true
 brew 'nvm' # Node manager
 brew 'php-cs-fixer'
