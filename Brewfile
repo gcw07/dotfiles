@@ -39,18 +39,20 @@ cask 'aerial'
 cask 'dashlane'
 cask 'discord'
 cask 'firefox'
-cask 'github'
+cask 'github', args: { appdir: "/Applications/Development" }
 cask 'google-chrome'
+cask 'iterm2', args: { appdir: "/Applications/Development" }
 cask 'java'
 cask 'moom'
-cask 'phpstorm'
+cask 'phpstorm', args: { appdir: "/Applications/Development" }
 cask 'scroll-reverser'
 cask 'slack'
-cask 'sourcetree'
+cask 'sourcetree', args: { appdir: "/Applications/Development" }
 cask 'spotify'
-cask 'tableplus'
+cask 'tableplus', args: { appdir: "/Applications/Development" }
 cask 'the-unarchiver'
-cask 'tinkerwell'
+cask 'tinkerwell', args: { appdir: "/Applications/Development" }
+cask 'zoomus'
 
 # Fonts
 cask 'font-fira-code'
@@ -66,6 +68,8 @@ cask 'font-source-serif-pro'
 
 # Mac App Store
 mas 'Keynote', id: 409183694
+mas 'myTuner Radio Live FM Stations', id: 881415018
 mas 'Numbers', id: 409203825
 mas 'Pages', id: 409201541
+mas 'Pixelmator', id: 407963104
 mas 'Todoist: To-Do List & Tasks', id: 585829637
