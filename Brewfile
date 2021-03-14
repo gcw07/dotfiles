@@ -34,7 +34,6 @@ brew 'redis', start_service: true
 
 # Apps
 cask 'aerial'
-cask 'dashlane'
 cask 'discord'
 cask 'firefox'
 cask 'github', args: { appdir: "/Applications/Development" }
