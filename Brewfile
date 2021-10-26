@@ -5,6 +5,9 @@ tap 'homebrew/cask-versions'
 tap 'homebrew/bundle'
 
 # Binaries
+brew 'bash' # Latest Bash version
+brew 'coreutils' # Those that come with macOS are outdated
+brew 'gh'
 brew 'git'
 brew 'grep'
 brew 'httpie'
@@ -49,7 +52,7 @@ cask 'spotify'
 cask 'tableplus', args: { appdir: "/Applications/Development" }
 cask 'the-unarchiver'
 cask 'tinkerwell', args: { appdir: "/Applications/Development" }
-cask 'zoomus'
+cask 'zoom'
 
 # Fonts
 cask 'font-fira-code'
@@ -64,9 +67,11 @@ cask 'font-source-sans-pro'
 cask 'font-source-serif-pro'
 
 # Mac App Store
+mas 'Gapplin', id: 768053424
+mas 'iHeartRadio', id: 999997712
 mas 'Keynote', id: 409183694
-mas 'myTuner Radio Live FM Stations', id: 881415018
 mas 'Numbers', id: 409203825
 mas 'Pages', id: 409201541
-mas 'Pixelmator', id: 407963104
-mas 'Todoist: To-Do List & Tasks', id: 585829637
+mas 'Pixelmator Pro', id: 1289583905
+mas 'Telegram', id: 747648890
+mas 'Todoist', id: 585829637
