@@ -1,23 +1,59 @@
 # Shortcuts
-alias copyssh="pbcopy < $HOME/.ssh/id_rsa.pub"
+alias copyssh="pbcopy < $HOME/.ssh/id_ed25519.pub"
 alias reloadshell="source $HOME/.zshrc"
 alias reloaddns="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
 alias ll="/usr/local/opt/coreutils/libexec/gnubin/ls -AhlFo --color --group-directories-first"
-alias phpstorm='open -a /Applications/PhpStorm.app "`pwd`"'
+alias phpstorm='open -a /Applications/Development/PhpStorm.app "`pwd`"'
 alias shrug="echo '¯\_(ツ)_/¯' | pbcopy"
 alias c="clear"
 
 # Directories
+alias code="cd $HOME/Code"
 alias dotfiles="cd $DOTFILES"
+alias desktop="cd $HOME/Desktop"
 alias library="cd $HOME/Library"
-alias sites="cd $HOME/Sites"
-alias lara="sites && cd laravel/"
-alias docs="lara && cd docs/"
 
 # Laravel
-alias a="php artisan"
-alias fresh="php artisan migrate:fresh --seed"
-alias seed="php artisan db:seed"
+alias art=artisan
+alias fresh="art migrate:fresh --seed"
+alias migrate="art migrate"
+alias playbook="art playbook:run"
+alias seed="art db:seed"
+alias tinker="art tinker"
+
+
+
+
+### transfer these
+alias phpunit="vendor/bin/phpunit"
+alias p="phpunit"
+alias pf="php vendor/bin/phpunit --filter "
+alias phpclean="php-cs-fixer fix"
+alias mix="npm run dev"
+alias mw="npm run watch"
+alias dep="php vendor/bin/dep"
+alias copykey="pbcopy < $HOME/.ssh/id_rsa.pub"
+
+function artisan() {
+    php artisan "$@"
+}
+
+function db {
+    if [ "$1" = "refresh" ]; then
+        mysql -uroot -e "drop database $2; create database $2"
+    elif [ "$1" = "create" ]; then
+        mysql -uroot -e "create database $2"
+    elif [ "$1" = "drop" ]; then
+        mysql -uroot -e "drop database $2"
+    fi
+}
+
+function npm-fresh() {
+    rm -rf node_modules package-lock.json yarn.lock
+    npm cache clear --force
+    npm install
+}
+
 
 # PHP
 alias cfresh="rm -rf vendor/ composer.lock && composer i"
