@@ -49,8 +49,12 @@ echo '--------------------------------'
 valet install
 
 # Create a Code directory
-# This is a default directory for macOS user accounts but doesn't comes pre-installed
+echo 'Setup Code Directory & Park Valet'
+echo '---------------------------------'
 mkdir $HOME/Code
+cd $HOME/Code
+valet park
+cd $HOME
 
 # Clone Github repositories
 ./clone.sh
