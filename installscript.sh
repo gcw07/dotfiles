@@ -1,176 +1,75 @@
 #!/bin/bash
 
+echo "Setting up your Mac..."
+
 # Hide "last login" line when starting a new terminal session
 touch $HOME/.hushlogin
 
-# Install zsh
-echo 'Install oh-my-zsh'
-echo '-----------------'
-rm -rf $HOME/.oh-my-zsh
-curl -L https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
-
-# Add global gitignore
+# Symlink the global gitignore
 ln -s $HOME/.dotfiles/shell/.global-gitignore $HOME/.global-gitignore
 git config --global core.excludesfile $HOME/.global-gitignore
 
-# Symlink zsh prefs
-rm $HOME/.zshrc
-ln -s $HOME/.dotfiles/shell/.zshrc $HOME/.zshrc
-
-# Symlink vim prefs
-rm $HOME/.vimrc
-ln -s $HOME/.dotfiles/shell/.vimrc $HOME/.vimrc
-rm $HOME/.vim
-ln -s $HOME/.dotfiles/shell/.vim $HOME/.vim
-
-# Symlink the Mackup config
-ln -s $HOME/.dotfiles/macos/.mackup.cfg $HOME/.mackup.cfg
-
-# Fix missing font characters (see https://github.com/robbyrussell/oh-my-zsh/issues/1906)
-cd ~/.oh-my-zsh/themes/
-git checkout d6a36b1 agnoster.zsh-theme
-
-# Activate z
-cd ~/.dotfiles/shell
-chmod +x z.sh
-
-echo 'Configure npm'
-echo '-------------'
-# Create a directory for global packages and tell npm where to store globally installed packages
-mkdir "${HOME}/.npm-packages"
-npm config set prefix "${HOME}/.npm-packages"
-
-echo 'Install homebrew'
-echo '----------------'
-echo install homebrew
-sudo rm -rf /usr/local/Cellar /usr/local/.git && brew cleanup
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/freek/.zprofile
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
-echo 'Install node'
-echo '------------'
-brew install node
-
-echo 'Install pkg-config'
-echo '------------------'
-brew install pkg-config
-
-echo 'Install wget'
-echo '------------'
-brew install wget
-
-echo 'Install httpie'
-echo '--------------'
-brew install httpie
-
-echo 'Install ncdu'
-echo '------------'
-brew install ncdu
-
-echo 'Install hub'
-echo '-----------'
-brew install hub
-
-echo 'Install ack'
-echo '-----------'
-brew install ack
-
-echo 'Install doctl'
-echo '-------------'
-brew install doctl
-
-
-echo 'Install some nice quicklook plugins'
-echo '-----------------------------------'
-brew install --cask qlcolorcode qlstephen qlmarkdown quicklook-json qlprettypatch quicklook-csv betterzip  suspicious-package
-
-echo 'Install php'
-echo '-----------'
-brew install php@8.0
-
-echo 'Install composer'
-echo '----------------'
-EXPECTED_COMPOSER_CHECKSUM="$(curl https://composer.github.io/installer.sig)"
-php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-ACTUAL_COMPOSER_CHECKSUM="$(php -r "echo hash_file('sha384', 'composer-setup.php');")"
-if [ "$EXPECTED_COMPOSER_CHECKSUM" != "$ACTUAL_COMPOSER_CHECKSUM" ]
-then
-    >&2 echo 'ERROR: Invalid installer checksum'
-    rm composer-setup.php
-    exit 1
+# Check for Oh My Zsh and install if we don't have it
+if test ! $(which omz); then
+  echo 'Install oh-my-zsh'
+  echo '-----------------'
+  /bin/sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
-php composer-setup.php
-rm composer-setup.php
-mv composer.phar /usr/local/bin/composer
 
-echo 'Install imagemagick'
-echo '-------------------'
-brew install imagemagick
+# Check for Homebrew and install if we don't have it
+if test ! $(which brew); then
+  echo 'Install homebrew'
+  echo '----------------'
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
 
-echo 'Install imagick'
-echo '---------------'
-pecl install imagick
+# Update Homebrew recipes
+brew update
 
-echo 'Install memcached'
-echo '-----------------'
-pecl install memcached
+# Install all our dependencies with bundle (See Brewfile)
+echo 'Install Brewfile packages'
+echo '-------------------------'
+brew tap homebrew/bundle
+brew bundle
 
-echo 'Install xdebug'
-echo '--------------'
-pecl install xdebug
+# Set default MySQL root password and auth type.
+mysql -u root -e "ALTER USER root@localhost IDENTIFIED WITH mysql_native_password BY 'password'; FLUSH PRIVILEGES;"
 
-echo 'Install redis'
-echo '-------------'
-pecl install redis
-
-echo 'Install laravel envoy'
+# Install PHP extensions with PECL
+echo 'Install PECL packages'
 echo '---------------------'
-composer global require "laravel/envoy=~2.0"
+pecl install memcached imagick redis
 
-echo 'Install phpunit-watcher'
-echo '-----------------------'
-composer global require spatie/phpunit-watcher
+# Install global Composer packages
+echo 'Install Global Composer Packages'
+echo '--------------------------------'
+/usr/local/bin/composer global require laravel/installer laravel/valet
 
-echo 'Install laravel valet'
-echo '---------------------'
-composer global require laravel/valet
+# Install Laravel Valet
 valet install
 
-echo 'Install mysql'
-echo '-------------'
-brew install mysql
-brew services start mysql
+# Create a Code directory
+# This is a default directory for macOS user accounts but doesn't comes pre-installed
+mkdir $HOME/Code
 
-echo 'Install yarn'
-echo '------------'
-brew install yarn
+# Clone Github repositories
+./clone.sh
 
-echo 'Install ghostscript'
-echo '-------------------'
-brew install ghostscript
+# Removes .zshrc from $HOME (if it exists) and symlinks the .zshrc file from the .dotfiles
+rm -rf $HOME/.zshrc
+ln -s $HOME/.dotfiles/shell/.zshrc $HOME/.zshrc
 
-echo 'Install mackup'
-echo '--------------'
-brew install mackup
-
-echo 'Install zsh-autosuggestions'
-echo '---------------------------'
-brew install zsh-autosuggestions
+# Symlink the Mackup config file to the home directory
+ln -s $HOME/.dotfiles/macos/.mackup.cfg $HOME/.mackup.cfg
 
 echo '++++++++++++++++++++++++++++++'
 echo '++++++++++++++++++++++++++++++'
 echo 'All done!'
-echo 'Things to do to make the agnoster terminal theme work:'
-echo '1. Install menlo patched font included in ~/.dotfiles/misc https://gist.github.com/qrush/1595572/raw/Menlo-Powerline.otf'
-echo '2. Install patched solarized theme included in ~/.dotfiles/misc'
 
 echo '++++++++++++++++++++++++++++++'
 echo 'Some optional tidbits'
 
-echo '1. Make sure dropbox is running first. If you have not backed up via Mackup yet, then run `mackup backup` to symlink preferences for a wide collection of apps to your dropbox. If you already had a backup via mackup run `mackup restore` You'\''ll find more info on Mackup here: https://github.com/lra/mackup.'
-echo '2. Set some sensible os x defaults by running: $HOME/.dotfiles/macos/set-defaults.sh'
-echo '3. Make a .dotfiles-custom/shell/.aliases for your personal commands'
+echo '1. Make sure iCloud is running first. If you have not backed up via Mackup yet, then run `mackup backup` to symlink preferences for a wide collection of apps to your dropbox. If you already had a backup via mackup run `mackup restore` You'\''ll find more info on Mackup here: https://github.com/lra/mackup.'
 
 echo '++++++++++++++++++++++++++++++'
 echo '++++++++++++++++++++++++++++++'
