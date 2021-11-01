@@ -19,7 +19,7 @@ brew 'tree' # List directories in a tree structure
 brew 'wget'
 brew 'zlib' # Needed for Memcached
 
-# Spatie Medialibrary
+# Image Packages
 brew 'jpegoptim'
 brew 'optipng'
 brew 'pngquant'
