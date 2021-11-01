@@ -16,6 +16,7 @@ brew 'mas' # Mac App Store manager
 brew 'pkg-config'
 brew 'trash' # Manage the Trash bin
 brew 'tree' # List directories in a tree structure
+brew 'wget'
 brew 'zlib' # Needed for Memcached
 
 # Spatie Medialibrary
