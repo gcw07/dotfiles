@@ -1,8 +1,10 @@
 # My dotfiles
 
+This repository is based around the dotfiles by [Freek Van der Herten](https://github.com/freekmurze/dotfiles) and [Dries Vints](https://github.com/driesvints/dotfiles) and modified for my own personal setup.
+
 ## A Fresh macOS Setup
 
-These instructions are for when you've already set up your dotfiles. If you want to get started with your own dotfiles you can [find instructions below](#your-own-dotfiles).
+These instructions are for when you've already set up your dotfiles.
 
 ### Before you re-install
 
@@ -26,19 +28,29 @@ If you did all of the above you may now follow these install instructions to set
 2. [Generate a new public and private SSH key](https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) by running:
 
    ```zsh
-   curl https://raw.githubusercontent.com/gcw07/dotfiles/master/ssh.sh | sh -s "<your-email-address>"
+   curl https://raw.githubusercontent.com/gcw07/dotfiles/main/ssh.sh | sh -s "<your-email-address>"
    ```
-
 3. Clone this repo to `~/.dotfiles` with:
 
     ```zsh
     git clone git@github.com:gcw07/dotfiles.git ~/.dotfiles
     ```
+4. Run the installation with:
 
-4. Run `~/.dotfiles/fresh.sh` to start the installation
+    ```zsh
+    cd .dotfiles
+    ./bootstrap.sh
+    ```
 5. After mackup is synced with your cloud storage, restore preferences by running `mackup restore`
 6. Restart your computer to finalize the process
 
 Your Mac is now ready to use!
 
-> Note: you can use a different location than `~/.dotfiles` if you want. Just make sure you also update the reference in the [`.zshrc`](shell/.zshrc#L2) file.
+## Notes
+
+When installing these dotfiles for the first time you'll need to backup all of your settings with Mackup. Install Mackup and backup your settings with the commands below. Your settings will be synced to iCloud so you can use them to sync between computers and reinstall them when reinstalling your Mac. If you want to save your settings to a different directory or different storage than iCloud, [checkout the documentation](https://github.com/lra/mackup/blob/master/doc/README.md#storage). Also make sure your `.zshrc` file is symlinked from your dotfiles repo to your home directory.
+
+```zsh
+brew install mackup
+mackup backup
+```
