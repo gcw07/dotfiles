@@ -64,7 +64,7 @@ ln -s $HOME/.dotfiles/shell/.zshrc $HOME/.zshrc
 ln -s $HOME/.dotfiles/macos/.mackup.cfg $HOME/.mackup.cfg
 
 # Clone Github repositories
-./clone.sh
+./shell/clone.sh
 
 echo '++++++++++++++++++++++++++++++'
 echo '++++++++++++++++++++++++++++++'
