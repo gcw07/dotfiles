@@ -45,7 +45,7 @@ cask 'firefox'
 cask 'github', args: { appdir: "/Applications/Development" }
 cask 'google-chrome'
 cask 'iterm2', args: { appdir: "/Applications/Development" }
-cask 'java'
+# cask 'java'
 cask 'moom'
 cask 'phpstorm', args: { appdir: "/Applications/Development" }
 cask 'scroll-reverser'
@@ -63,7 +63,7 @@ cask 'font-jetbrains-mono'
 cask 'font-lato'
 cask 'font-open-sans'
 cask 'font-roboto'
-cask 'font-roboto-condensed'
+# cask 'font-roboto-condensed'
 cask 'font-source-code-pro-for-powerline'
 cask 'font-source-code-pro'
 cask 'font-source-sans-pro'
