@@ -43,7 +43,7 @@ pecl install memcached imagick redis
 # Install global Composer packages
 echo 'Install Global Composer Packages'
 echo '--------------------------------'
-/usr/local/bin/composer global require laravel/installer laravel/valet
+composer global require laravel/installer laravel/valet
 
 # Install Laravel Valet
 valet install
