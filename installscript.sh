@@ -51,7 +51,7 @@ valet install
 # Create a Code directory
 echo 'Setup Code Directory & Park Valet'
 echo '---------------------------------'
-mkdir $HOME/Code
+mkdir -p $HOME/Code
 cd $HOME/Code
 valet park
 cd $HOME
