@@ -13,7 +13,7 @@ alias pf="phpunit --filter "
 alias pp="art test --parallel"
 
 # PHP
-alias composer="php -d memory_limit=-1 /usr/local/bin/composer"
+alias composer="php -d memory_limit=-1 /opt/homebrew/bin/composer"
 alias c="composer"
 alias cu="composer update"
 alias cr="composer require"
