@@ -15,14 +15,19 @@ function pf() {
    fi
 }
 
-# Archive (zip folder)
-function archive () {
-   zip -r "$1".zip -i "$1" ;
-}
-
 # Laravel Artisan
 function artisan() {
     php artisan "$@"
+}
+
+# Laravel Tinker
+function tinker() {
+  if [ -z "$1" ]
+    then
+       php artisan tinker
+    else
+       php artisan tinker --execute="dd($1);"
+  fi
 }
 
 # DB (mysql)
@@ -36,18 +41,6 @@ function db {
     elif [ "$1" = "list" ]; then
         export MYSQL_PWD="password"; mysql -uroot -e "show databases" | perl -p -e's/\|| *//g'
     fi
-}
-
-# Create a new directory and enter it
-function mkd() {
-   mkdir -p "$@" && cd "$@"
-}
-
-# Refresh NPM packages
-function npm-fresh() {
-    rm -rf node_modules package-lock.json yarn.lock
-    npm cache clear --force
-    npm install
 }
 
 # Open DB from .env file info
@@ -67,17 +60,24 @@ function opendb () {
    open $DB_URL
 }
 
+# Archive (zip folder)
+function archive () {
+   zip -r "$1".zip -i "$1" ;
+}
+
+# Create a new directory and enter it
+function mkd() {
+   mkdir -p "$@" && cd "$@"
+}
+
+# Refresh NPM packages
+function npm-fresh() {
+    rm -rf node_modules package-lock.json yarn.lock
+    npm cache clear --force
+    npm install
+}
+
 # Remove Host from SSH
 function removehost() {
    ssh-keygen -R "$1"
-}
-
-# Tinker
-function tinker() {
-  if [ -z "$1" ]
-    then
-       php artisan tinker
-    else
-       php artisan tinker --execute="dd($1);"
-  fi
 }
