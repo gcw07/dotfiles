@@ -8,8 +8,6 @@ alias seed="art db:seed"
 # PHP Testing
 alias pest="vendor/bin/pest"
 alias phpunit="vendor/bin/phpunit"
-alias p="phpunit"
-alias pf="phpunit --filter "
 alias pp="art test --parallel"
 
 # PHP
