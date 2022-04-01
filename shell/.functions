@@ -30,6 +30,15 @@ function tinker() {
   fi
 }
 
+# Deployer
+function dep() {
+   if [ -f vendor/bin/deployer.phar ]; then
+      vendor/bin/deployer.phar "$@"
+   else
+      vendor/bin/dep "$@"
+   fi
+}
+
 # DB (mysql)
 function db {
     if [ "$1" = "refresh" ]; then
