@@ -23,6 +23,7 @@ alias switch-php80="valet use php@8.0"
 alias switch-php74="valet use php@7.4"
 alias larastan="vendor/bin/phpstan analyse"
 alias fixer="php-cs-fixer fix"
+alias pint="vendor/bin/pint"
 
 # Javascript
 alias mix="npm run dev"
