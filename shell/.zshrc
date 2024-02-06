@@ -13,6 +13,9 @@ autoload -Uz compinit && compinit
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="robbyrussell"
 
+# Hide username in prompt
+DEFAULT_USER=`whoami`
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -45,3 +48,18 @@ export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.composer/vendor/bin:$PATH"
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
+
+# Herd injected PHP 8.2 configuration.
+export HERD_PHP_82_INI_SCAN_DIR="/Users/$DEFAULT_USER/Library/Application Support/Herd/config/php/82/"
+
+# Herd injected PHP 8.3 configuration.
+export HERD_PHP_83_INI_SCAN_DIR="/Users/$DEFAULT_USER/Library/Application Support/Herd/config/php/83/"
+
+# Herd injected PHP binary.
+export PATH="/Users/$DEFAULT_USER/Library/Application Support/Herd/bin/":$PATH
+
+# Herd injected NVM configuration
+export NVM_DIR="/Users/$DEFAULT_USER/Library/Application Support/Herd/config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+[[ -f "/Applications/Herd.app/Contents/Resources/config/shell/zshrc.zsh" ]] && builtin source "/Applications/Herd.app/Contents/Resources/config/shell/zshrc.zsh"
