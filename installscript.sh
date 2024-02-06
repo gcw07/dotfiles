@@ -33,18 +33,16 @@ brew update
 echo 'Install Brewfile packages'
 echo '-------------------------'
 brew tap homebrew/bundle
-brew bundle
+brew bundle --file ./Brewfile
 
 # Set default MySQL root password and auth type.
 mysql -u root -e "ALTER USER root@localhost IDENTIFIED WITH mysql_native_password BY 'password'; FLUSH PRIVILEGES;"
 
 # Create a Code directory
-echo 'Setup Code Directory & Park Valet'
+echo 'Setup Code Directory'
 echo '---------------------------------'
 mkdir -p $HOME/Code
-cd $HOME/Code
-valet park
-cd $HOME
+mkdir -p $HOME/Herd
 
 # Removes .zshrc from $HOME (if it exists) and symlinks the .zshrc file from the .dotfiles
 rm -rf $HOME/.zshrc
