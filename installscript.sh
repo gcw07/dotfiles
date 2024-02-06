@@ -13,7 +13,7 @@ git config --global core.excludesfile $HOME/.global-gitignore
 if test ! $(which omz); then
   echo 'Install oh-my-zsh'
   echo '-----------------'
-  /bin/sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/HEAD/tools/install.sh)"
 fi
 
 # Check for Homebrew and install if we don't have it
