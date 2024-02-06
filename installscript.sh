@@ -35,19 +35,6 @@ brew bundle
 # Set default MySQL root password and auth type.
 mysql -u root -e "ALTER USER root@localhost IDENTIFIED WITH mysql_native_password BY 'password'; FLUSH PRIVILEGES;"
 
-# Install PHP extensions with PECL
-echo 'Install PECL packages'
-echo '---------------------'
-pecl install memcached imagick redis
-
-# Install global Composer packages
-echo 'Install Global Composer Packages'
-echo '--------------------------------'
-composer global require laravel/installer laravel/valet
-
-# Install Laravel Valet
-valet install
-
 # Create a Code directory
 echo 'Setup Code Directory & Park Valet'
 echo '---------------------------------'

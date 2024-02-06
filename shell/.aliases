@@ -11,18 +11,8 @@ alias phpunit="vendor/bin/phpunit"
 alias pp="art test --parallel"
 
 # PHP
-alias composer="php -d memory_limit=-1 /opt/homebrew/bin/composer"
-alias c="composer"
-alias cu="composer update"
-alias cr="composer require"
-alias ci="composer install"
-alias cda="composer dump-autoload -o"
 alias cfresh="rm -rf vendor/ composer.lock && composer i"
-alias switch-php81="valet use php"
-alias switch-php80="valet use php@8.0"
-alias switch-php74="valet use php@7.4"
 alias larastan="vendor/bin/phpstan analyse"
-alias fixer="php-cs-fixer fix"
 alias pint="vendor/bin/pint"
 
 # Javascript
