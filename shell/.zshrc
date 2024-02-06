@@ -37,10 +37,6 @@ for file in $DOTFILES/shell/.{exports,aliases,functions}; do
 done
 unset file
 
-# NVM path
-export NVM_DIR=$HOME/.nvm
-source $(brew --prefix nvm)/nvm.sh
-
 # Import ssh keys in keychain
 ssh-add -A 2>/dev/null;
 
