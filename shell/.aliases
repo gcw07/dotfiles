@@ -16,6 +16,7 @@ alias larastan="vendor/bin/phpstan analyse"
 alias pint="vendor/bin/pint"
 
 # Javascript
+alias nfresh="rm -rf node_modules/ package-lock.json && npm install"
 alias mix="npm run dev"
 alias mw="npm run watch"
 alias watch="npm run watch"
@@ -24,7 +25,8 @@ alias watch="npm run watch"
 alias copykey="pbcopy < $HOME/.ssh/id_ed25519.pub"
 alias hostfile="nano /etc/hosts"
 alias phpstorm='open -a /Applications/Development/PhpStorm.app "`pwd`"'
-alias reloadshell="source $HOME/.zshrc"
+alias reloadshell="omz reload"
+alias reloaddns="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
 alias sshconfig="nano $HOME/.ssh/config"
 alias zshconfig="nano $HOME/.zshrc"
 
@@ -33,9 +35,6 @@ alias l="ls -laF"
 
 # Redis
 alias flush-redis="redis-cli FLUSHALL"
-
-# Flush Directory Service cache
-alias flushdns="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
 
 # Directories
 alias code="cd $HOME/Code"
