@@ -29,15 +29,9 @@ brew 'svgo'
 brew 'gifsicle'
 
 # Development
-brew 'php'
-brew 'php@8.1'
-brew 'php@8.0'
-brew 'php@7.4'
-brew 'composer'
 brew 'imagemagick'
 brew 'mysql', start_service: true
-brew 'nvm' # Node manager
-brew 'php-cs-fixer'
+brew 'node'
 brew 'redis', start_service: true
 
 # Apps
@@ -46,6 +40,7 @@ cask 'discord'
 cask 'firefox'
 cask 'github', args: { appdir: "/Applications/Development" }
 cask 'google-chrome'
+cask 'herd'
 cask 'iterm2', args: { appdir: "/Applications/Development" }
 # cask 'java'
 cask 'moom'
