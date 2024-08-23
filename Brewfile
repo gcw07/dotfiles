@@ -30,9 +30,6 @@ brew 'gifsicle'
 
 # Development
 brew 'imagemagick'
-brew 'mysql', start_service: true
-brew 'node'
-brew 'redis', start_service: true
 
 # Apps
 cask 'aerial'
