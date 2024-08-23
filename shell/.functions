@@ -42,13 +42,13 @@ function dep() {
 # DB (mysql)
 function db {
     if [ "$1" = "refresh" ]; then
-        export MYSQL_PWD="password"; mysql -uroot -e "drop database $2; create database $2"
+        mysql -u root -h 127.0.0.1 -P 3306 -e "drop database $2; create database $2"
     elif [ "$1" = "create" ]; then
-        export MYSQL_PWD="password"; mysql -uroot -e "create database $2"
+        mysql -u root -h 127.0.0.1 -P 3306 -e "create database $2"
     elif [ "$1" = "drop" ]; then
-        export MYSQL_PWD="password"; mysql -uroot -e "drop database $2"
+        mysql -u root -h 127.0.0.1 -P 3306 -e "drop database $2"
     elif [ "$1" = "list" ]; then
-        export MYSQL_PWD="password"; mysql -uroot -e "show databases" | perl -p -e's/\|| *//g'
+        mysql -u root -h 127.0.0.1 -P 3306 -e "show databases" | perl -p -e's/\|| *//g'
     fi
 }
 
