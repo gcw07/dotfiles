@@ -17,7 +17,7 @@ function pf() {
 
 # Laravel Artisan
 function artisan() {
-    php artisan "$@"
+    herd php artisan "$@"
 }
 
 # Laravel Tinker
