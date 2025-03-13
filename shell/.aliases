@@ -4,6 +4,8 @@ alias fresh="art migrate:fresh --seed"
 alias migrate="art migrate"
 alias playbook="art playbook:run"
 alias seed="art db:seed"
+alias serve="art serve"
+alias tinker="art tinker"
 
 # PHP Testing
 alias pest="vendor/bin/pest"
@@ -14,6 +16,8 @@ alias pp="art test --parallel"
 alias cfresh="rm -rf vendor/ composer.lock && composer i"
 alias larastan="vendor/bin/phpstan analyse"
 alias pint="vendor/bin/pint"
+alias composer="herd composer"
+alias php="herd php"
 
 # Javascript
 alias nfresh="rm -rf node_modules/ package-lock.json && npm install"
